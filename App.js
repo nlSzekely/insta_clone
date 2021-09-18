@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
+import LoginScreen from './components/auth/Login';
 import * as firebase from 'firebase';
 
 LogBox.ignoreLogs(['Remote debugger', 'Reanimated 2', 'Accessing the state']);
@@ -33,6 +34,8 @@ export default function App() {
       <Stack.Navigator initialRouteName='LandingScreen'>
         <Stack.Screen name='LandingScreen' options={{headerShown:false}} component={LandingScreen} />
         <Stack.Screen name='RegisterScreen' component={RegisterScreen} />
+        <Stack.Screen name='LoginScreen' component={LoginScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
