@@ -1,6 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, LogBox} from 'react-native';
+import {StyleSheet, Text, View,Button, LogBox} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LandingScreen from './components/auth/Landing';
@@ -12,7 +12,7 @@ import {Provider} from 'react-redux'
 
 const {store, persistor} = getStore();
 
-LogBox.ignoreLogs(['Remote debugger', 'Reanimated 2', 'Accessing the state']);
+LogBox.ignoreLogs(['Remote debugger', 'Reanimated 2', 'Accessing the state','Setting a timer']);
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBA9rCQawK5kD-IBzy_DfOik6FtbVIIrUA',
@@ -24,10 +24,13 @@ const firebaseConfig = {
   measurementId: 'G-P0161XKQ3C',
 };
 
+
 // make sure we ar not running any firebase instance
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
+
+
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -73,6 +76,10 @@ export default function App() {
       return(
         <View style={{flex:1, justifyContent:'center'}}>
           <Text>Logged in</Text>
+          <Button
+          title="Sign out"
+          onPress={()=>firebase.auth().signOut()}
+          />
         </View>
       )
     }

@@ -5,9 +5,7 @@ import {persistStore, persistReducer} from 'redux-persist';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 // reducers
-import settingsReducer from './reducers/settingsReducer';
-import loadingReducer from './reducers/loadingReducer';
-import unsentLocationsActions from './reducers/unsentLocationsReducer';
+import userReducer from '../store/reducers/userReducer'
 
 const persistConfig = {
   key: 'root',
@@ -30,9 +28,7 @@ const persistConfig = {
 
 const middleware = [reduxThunk];
 const combinedReducers = combineReducers({
-  settingsState: settingsReducer,
-  loadingState: loadingReducer,
-  unsentLocations: unsentLocationsActions,
+  userState: userReducer,
 });
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
