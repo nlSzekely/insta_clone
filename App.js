@@ -40,7 +40,6 @@ export default function App() {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log('🚀 ~ file: App.js ~ line 38 ~ firebase.auth ~ user', user);
       if (!user) {
         setLoggedIn(false);
         setLoaded(true);
