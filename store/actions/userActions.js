@@ -1,4 +1,5 @@
 import actionTypes from '../actionTypes';
+import firebase from 'firebase';
 
 export const setCurrentUser = (user) => {
   return {
@@ -6,3 +7,20 @@ export const setCurrentUser = (user) => {
     payload: user,
   };
 };
+
+export function fetchUser() {
+  return (dispatch) => {
+    firebase
+      .firestore()
+      .collection('user')
+      .doc(firebase.auth().currentUser.uid)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          dispatch(setCurrentUser(snapshot.data()));
+        } else {
+          console.log('user does not exist');
+        }
+      });
+  };
+}

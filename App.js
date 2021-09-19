@@ -3,9 +3,10 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View,Button, LogBox} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LandingScreen from './components/auth/Landing';
-import RegisterScreen from './components/auth/Register';
-import LoginScreen from './components/auth/Login';
+import LandingScreen from './screens/auth/Landing';
+import RegisterScreen from './screens/auth/Register';
+import LoginScreen from './screens/auth/Login';
+import Main from './screens/Main';
 import * as firebase from 'firebase';
 import getStore from './store/store';
 import {Provider} from 'react-redux'
@@ -74,13 +75,7 @@ export default function App() {
       );
     }else{
       return(
-        <View style={{flex:1, justifyContent:'center'}}>
-          <Text>Logged in</Text>
-          <Button
-          title="Sign out"
-          onPress={()=>firebase.auth().signOut()}
-          />
-        </View>
+      <Main/>
       )
     }
   }
