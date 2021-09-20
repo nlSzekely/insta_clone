@@ -3,7 +3,7 @@ import {View, Text, Button} from 'react-native';
 import firebase from 'firebase';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchUser} from '../store/actions/userActions';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Feed from './main/Feed';
 import Profile from './main/Profile';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,7 +13,7 @@ function Empty(){
   return null
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 export default function Main() {
   const currentUser = useSelector((state) => state.userState.currentUser);
   console.log('🚀 ~ file: Main.js ~ line 9 ~ Main ~ currentUser', currentUser);
@@ -27,7 +27,7 @@ export default function Main() {
     return null;
   }
   return (
-    <Tab.Navigator initialRouteName="Feed">
+    <Tab.Navigator initialRouteName="Feed" labeled={false}>
       <Tab.Screen
         name='Feed'
         options={{
