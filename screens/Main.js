@@ -5,6 +5,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchUser} from '../store/actions/userActions';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feed from './main/Feed';
+import Profile from './main/Profile';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
+function Empty(){
+  return null
+}
 
 const Tab = createBottomTabNavigator();
 export default function Main() {
@@ -20,8 +27,40 @@ export default function Main() {
     return null;
   }
   return (
-    <Tab.Navigator>
-      <Tab.Screen name='Feed' component={Feed} />
+    <Tab.Navigator initialRouteName="Feed">
+      <Tab.Screen
+        name='Feed'
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name='home' color={color} size={26} />
+          ),
+        }}
+        component={Feed}
+      />
+      <Tab.Screen
+        name='Add+'
+        listeners={({navigation}) => ({
+          tabPress: (event) => {
+            event.preventDefault();
+            navigation.navigate('Add');
+          },
+        })}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name='plus-box' color={color} size={26} />
+          ),
+        }}
+        component={Empty}
+      />
+      <Tab.Screen
+        name='Profile'
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name='account-circle' color={color} size={26} />
+          ),
+        }}
+        component={Profile}
+      />
       {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
       {/* <View style={{flex: 1, justifyContent: 'center'}}>
       <Text>{currentUser.name} Logged in</Text>

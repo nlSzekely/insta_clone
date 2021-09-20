@@ -10,7 +10,7 @@ import Main from './screens/Main';
 import * as firebase from 'firebase';
 import getStore from './store/store';
 import {Provider} from 'react-redux';
-
+import Add from './screens/main/Add';
 const {store, persistor} = getStore();
 
 LogBox.ignoreLogs([
@@ -74,7 +74,16 @@ export default function App() {
         </Stack.Navigator>
       );
     } else {
-      return <Main />;
+      return (
+        <Stack.Navigator initialRouteName='LandingScreen'>
+          <Stack.Screen
+            name='Main'
+            options={{headerShown: false}}
+            component={Main}
+          />
+          <Stack.Screen name='Add' component={Add} />
+        </Stack.Navigator>
+      );
     }
   }
   return (
