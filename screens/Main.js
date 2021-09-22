@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 import firebase from 'firebase';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchUser} from '../store/actions/userActions';
+import {fetchUser, fetchUserPosts} from '../store/actions/userActions';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Feed from './main/Feed';
 import Profile from './main/Profile';
@@ -21,6 +21,8 @@ export default function Main() {
   useEffect(() => {
     console.log('USER FETCHED');
     dispatch(fetchUser());
+    dispatch(fetchUserPosts());
+
   }, []);
 
   if (!currentUser) {

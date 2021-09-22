@@ -49,7 +49,7 @@ export default function App({navigation}) {
     return <Text>No access to camera</Text>;
   }
   return (
-    <>
+    <View style={{flex:1}}>
       <View style={styles.cameraContainer}>
         <Camera
           style={styles.camera}
@@ -57,7 +57,12 @@ export default function App({navigation}) {
           ref={(ref) => setCamera(ref)}
         />
       </View>
-      {image && <Image source={{uri:image}}  style={{flex:1}}/>}
+      {image && 
+      <View style={{flex:0.5,padding:20}}>
+      <Image source={{uri:image}}  resizeMode='contain' style={{flex:1}}/>
+
+          </View>
+      }
       <Button
         title='Flip Image'
         style={styles.button}
@@ -72,9 +77,7 @@ export default function App({navigation}) {
       <Button title='Take picture' onPress={takePicture} />
       <Button title='Pick Image From Gallery' onPress={pickImage} />
       <Button title='Save' onPress={()=> navigation.navigate("Save",{image})} />
-
-
-    </>
+    </View>
   );
 }
 

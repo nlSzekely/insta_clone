@@ -15,7 +15,7 @@ export default function Save(props) {
     firebase.firestore().collection("posts").doc(firebase.auth().currentUser.uid).collection("userPosts").add({
       downloadUrl,
       caption,
-      creationDate: new Date().toISOString()
+      creationDate: firebase.firestore.FieldValue.serverTimestamp()
     }).then(()=>{
       navigation.popToTop()
     })
