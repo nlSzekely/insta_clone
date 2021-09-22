@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 import getStore from './store/store';
 import {Provider} from 'react-redux';
 import Add from './screens/main/Add';
+import Save from './screens/main/Save';
 const {store, persistor} = getStore();
 
 LogBox.ignoreLogs([
@@ -81,7 +82,9 @@ export default function App() {
             options={{headerShown: false}}
             component={Main}
           />
+          
           <Stack.Screen name='Add' component={Add} />
+          <Stack.Screen name='Save' component={Save} />
         </Stack.Navigator>
       );
     }
