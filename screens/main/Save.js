@@ -11,6 +11,16 @@ export default function Save(props) {
   const { navigation, route } = props;
   const { image } = route.params;
 
+  function savePost(downloadUrl){
+    firebase.firestore().collection("posts").doc(firebase.auth().currentUser.uid).collection("userPosts").add({
+      downloadUrl,
+      caption,
+      creationDate: new Date().toISOString()
+    }).then(()=>{
+      navigation.popToTop()
+    })
+  }
+
   async function uploadImage() {
     const uri = image;
     const response = await fetch(uri);
@@ -27,8 +37,9 @@ export default function Save(props) {
     };
 
     const taskCompleted = (snapshot) => {
-      snapshot.ref.getDownloadURL().then((snapshot) => {
+      task.snapshot.ref.getDownloadURL().then((snapshot) => {
         console.log(snapshot);
+        savePost(snapshot);
       });
 
     };
